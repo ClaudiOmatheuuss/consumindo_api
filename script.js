@@ -5,6 +5,16 @@ async function buscaEndereco(cep){
         if (consultaCEPConvertido.erro){
             throw Error('CEP não existente!')
         }
+        var logradouro = document.getElementById('endereco')
+        var bairro = document.getElementById('bairro')
+        var cidade = document.getElementById('cidade')
+        var estado = document.getElementById('estado')
+
+        logradouro.value = consultaCEPConvertido.logradouro
+        bairro.value = consultaCEPConvertido.bairro
+        cidade.value = consultaCEPConvertido.localidade
+        estado.value = consultaCEPConvertido.uf
+
         console.log(consultaCEPConvertido)
         return consultaCEPConvertido
     } catch(erro) {
@@ -13,4 +23,4 @@ async function buscaEndereco(cep){
 }
 
 var cep = document.getElementById('cep')
-cep.addEventListener('focusout' , () => buscaEndereco(cep.value))
+cep.addEventListener("focusout" , () => buscaEndereco(cep.value))
